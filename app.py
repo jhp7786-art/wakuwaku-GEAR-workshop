@@ -3,6 +3,10 @@ from google.adk.runners import InMemoryRunner
 from google.genai import types
 import asyncio
 import os
+from dotenv import load_dotenv
+
+load_dotenv() # Load variables from .env file
+
 
 app = Flask(__name__)
 
