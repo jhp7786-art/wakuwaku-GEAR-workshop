@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const sessionId = Math.random().toString(36).substring(2, 15);
+    const sessionId = crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).substring(2, 15);
     const textInput = document.getElementById('text-input');
     const sendButton = document.getElementById('send-button');
     const characterImage = document.getElementById('character-image');
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function populateVoiceList() {
         const allVoices = speechSynthesis.getVoices();
         voices = allVoices.filter(voice => voice.name.includes('Google'));
-        voiceSelect.innerHTML = '';
+        voiceSelect.textContent = '';
 
         let usVoiceIndex = -1;
 
@@ -57,11 +57,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const segments = Array.from(segmenter.segment(text)).map(s => s.segment);
             
             let i = 0;
-            element.innerHTML = "";
+            element.textContent = "";
 
             function type() {
                 if (i < segments.length) {
-                    element.innerHTML += segments[i];
+                    element.textContent += segments[i];
                     i++;
                     setTimeout(type, speed);
                 }
@@ -70,10 +70,10 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             // Fallback for older browsers
             let i = 0;
-            element.innerHTML = "";
+            element.textContent = "";
             function type() {
                 if (i < text.length) {
-                    element.innerHTML += text.charAt(i);
+                    element.textContent += text.charAt(i);
                     i++;
                     setTimeout(type, speed);
                 }

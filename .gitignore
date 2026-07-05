@@ -24,3 +24,8 @@ env/
 .DS_Store
 *.log
 *.sqlite3'
+.venv/
+__pycache__/
+gemini_key.txt
+.env
+set_env.sh
